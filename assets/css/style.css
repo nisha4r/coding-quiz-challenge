@@ -47,7 +47,8 @@ button {
     font-size: 2em;
     letter-spacing: 0.21px;
     line-height: 16px;
-    width: 355px;
+    min-width: 355px;
+    max-width: 500px;
     padding: 20px;
     text-align: left;
     transition-duration: 0.15s;
@@ -55,6 +56,10 @@ button {
     transition-timing-function: linear;
     margin-top: 0.6em;
     border: 0px;
+}
+
+button:hover{
+    background: #BD60E7;
 }
 
 .display-none{
