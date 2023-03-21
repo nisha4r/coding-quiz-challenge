@@ -40,10 +40,10 @@ button {
     border-radius: 8px;
     color: #fdfeff;
     cursor: pointer;
-    font-size: 2em;
-    letter-spacing: 0.21px;
+    font-size: 1rem;
+    letter-spacing: 0.10px;
     line-height: 16px;
-    width: 355px;
+    width: 400px;
     padding: 20px;
     text-align: left;
     transition-duration: 0.15s;
