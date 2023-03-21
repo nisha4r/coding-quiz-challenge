@@ -47,8 +47,7 @@ button {
     font-size: 2em;
     letter-spacing: 0.21px;
     line-height: 16px;
-    min-width: 355px;
-    max-width: 500px;
+    width: auto;   
     padding: 20px;
     text-align: left;
     transition-duration: 0.15s;
@@ -109,6 +108,10 @@ section {
     text-align: center;
 }
 
+.normal-font {
+    font-size: 28px;
+   
+}
 
 
 .timer-text {
