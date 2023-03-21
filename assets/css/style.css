@@ -5,18 +5,22 @@ body {
     flex-direction: column;
     min-height: 100vh;
     justify-content: flex-start;
-    
+
 }
 
-.view-score{
+.view-score {
     color: #B546E6;
     font-size: 25px;
     margin-top: 20px;
     margin-left: 20px;
-   
+
 }
 
-.answer-response{
+.question-box {
+    width: 800px;
+}
+
+.answer-response {
     color: gray;
     font-style: italic;
     font-size: 30px;
@@ -53,7 +57,9 @@ button {
     border: 0px;
 }
 
-
+.display-none{
+    display: none;
+}
 
 main {
     display: flex;

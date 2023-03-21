@@ -1,8 +1,10 @@
 var wordBlank = document.querySelector(".word-blanks");
-var win = document.querySelector(".win");
+var question = document.querySelectorAll("main > section");
+var nextPageId = 1;
 var lose = document.querySelector(".lose");
 var timerElement = document.querySelector(".timer-count");
 var startButton = document.querySelector(".start-button");
+var answerButton = document.querySelector("li > button");
 
 var chosenWord = "";
 var numBlanks = 0;
@@ -21,6 +23,11 @@ var words = ["variable","array", "modulus", "object", "function", "string", "boo
 
 // The init function is called when the page loads 
 function init() {
+  question.forEach(function(el) {
+    el.style.display = 'none';
+ });
+ question[0].style = "block";
+
   getWins();
   getlosses();
 }
@@ -28,11 +35,31 @@ function init() {
 // The startGame function is called when the start button is clicked
 function startGame() {
   isWin = false;
-  timerCount = 10;
+  timerCount = 30;
   // Prevents start button from being clicked when round is in progress
   startButton.disabled = true;
-  renderBlanks()
+  nextPage(nextPageId);  
   startTimer()
+ 
+}
+
+
+
+answerButton.addEventListener("click", nextPage());
+var previous = nextPageId;
+function nextPage(){
+  hidePrevious();  
+  question[nextPageId].setAttribute("style",  "display: block");
+  nextPageId++;
+  previous = nextPageId;
+}
+
+function hidePrevious(){
+  if(nextPage > 0){
+    previous--;    
+    question[previous].style.display = "none";
+  }
+  
 }
 
 // The winGame function is called when the win condition is met
@@ -113,7 +140,7 @@ function getWins() {
     winCounter = storedWins;
   }
   //Render win count to page
-  win.textContent = winCounter;
+  //win.textContent = winCounter;
 }
 
 function getlosses() {
@@ -123,7 +150,7 @@ function getlosses() {
   } else {
     loseCounter = storedLosses;
   }
-  lose.textContent = loseCounter;
+  //lose.textContent = loseCounter;
 }
 
 function checkWin() {
@@ -186,5 +213,3 @@ function resetGame() {
   setWins()
   setLosses()
 }
-// Attaches event listener to button
-resetButton.addEventListener("click", resetGame);
