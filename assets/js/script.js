@@ -4,7 +4,7 @@ var nextPageId = 1;
 var lose = document.querySelector(".lose");
 var timerElement = document.querySelector(".timer-count");
 var startButton = document.querySelector(".start-button");
-var answerButton = document.querySelector("li > button");
+var answerButton = document.querySelectorAll("li > button");
 
 var chosenWord = "";
 var numBlanks = 0;
@@ -27,7 +27,12 @@ function init() {
     el.style.display = 'none';
  });
  question[0].style = "block";
-
+ for (i = 0; i < answerButton.length; i++) {
+  answerButton[i].addEventListener("click", function (){
+   nextPage();
+  });
+ 
+}
   getWins();
   getlosses();
 }
@@ -38,26 +43,30 @@ function startGame() {
   timerCount = 30;
   // Prevents start button from being clicked when round is in progress
   startButton.disabled = true;
-  nextPage(nextPageId);  
+  nextPage();  
   startTimer()
  
 }
 
 
 
-answerButton.addEventListener("click", nextPage());
-var previous = nextPageId;
+
+var previous = 0;
 function nextPage(){
   hidePrevious();  
-  question[nextPageId].setAttribute("style",  "display: block");
-  nextPageId++;
-  previous = nextPageId;
+  if(nextPageId < question.length ){
+    question[nextPageId].setAttribute("style",  "display: block");
+    previous = nextPageId;
+    nextPageId++;
+    
+  }
+  
 }
 
 function hidePrevious(){
-  if(nextPage > 0){
-    previous--;    
-    question[previous].style.display = "none";
+  if(previous >= 0 && previous < question.length){       
+    question[previous].setAttribute("style",  "display: none");
+    
   }
   
 }
