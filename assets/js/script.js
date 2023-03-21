@@ -5,6 +5,9 @@ var lose = document.querySelector(".lose");
 var timerElement = document.querySelector(".timer-count");
 var startButton = document.querySelector(".start-button");
 var answerButton = document.querySelectorAll("li > button");
+var submitScore = document.querySelector("#submit");
+var viewHighScoreEl = document.querySelector(".view-score");
+var backBtn = document.querySelector("#back");
 
 var chosenWord = "";
 var numBlanks = 0;
@@ -21,6 +24,16 @@ var blanksLetters = [];
 // Array of words the user will guess
 var words = ["variable","array", "modulus", "object", "function", "string", "boolean"];
 
+submitScore.addEventListener("click", nextPage);
+viewHighScoreEl.addEventListener("click", function(){
+ 
+  question.forEach(function(el) {
+    el.style.display = 'none';
+ });
+ question[7].style.display = "block";
+ backBtn.addEventListener("click", currentPage)
+});
+
 // The init function is called when the page loads 
 function init() {
   question.forEach(function(el) {
@@ -28,9 +41,7 @@ function init() {
  });
  question[0].style = "block";
  for (i = 0; i < answerButton.length; i++) {
-  answerButton[i].addEventListener("click", function (){
-   nextPage();
-  });
+  answerButton[i].addEventListener("click", nextPage);
  
 }
   getWins();
@@ -59,6 +70,16 @@ function nextPage(){
     previous = nextPageId;
     nextPageId++;
     
+  }
+  
+}
+
+function currentPage(){
+  question[7].style.display = "none";
+  --nextPageId;
+  if(nextPageId < question.length ){
+    question[nextPageId].setAttribute("style",  "display: block");
+    previous = nextPageId;      
   }
   
 }

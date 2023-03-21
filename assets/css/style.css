@@ -8,12 +8,20 @@ body {
 
 }
 
-.view-score {
-    color: #B546E6;
-    font-size: 25px;
-    margin-top: 20px;
-    margin-left: 20px;
+button,  .view-score {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    font-size: 24px;
 
+}
+.view-score:hover{
+    color:  #BD60E7;
+    background: none;;
 }
 
 .question-box {
