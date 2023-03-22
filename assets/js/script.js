@@ -1,14 +1,14 @@
-var wordBlank = document.querySelector(".word-blanks");
+
 var question = document.querySelectorAll("main > section");
 var nextPageId = 1;
-var lose = document.querySelector(".lose");
 var timerElement = document.querySelector(".timer-count");
 var startButton = document.querySelector(".start-button");
 var answerButton = document.querySelectorAll("li > button");
 var submitScore = document.querySelector("#submit");
 var viewHighScoreEl = document.querySelector(".view-score");
 var backBtn = document.querySelector("#back");
-
+var correctEl = document.querySelector("#correct");
+var wrongEl = document.querySelector("#wrong");
 var chosenWord = "";
 var numBlanks = 0;
 var winCounter = 0;
@@ -17,84 +17,104 @@ var isWin = false;
 var timer;
 var timerCount;
 
-// Arrays used to create blanks and letters on screen
-var lettersInChosenWord = [];
-var blanksLetters = [];
+
 
 // Array of words the user will guess
-var words = ["variable","array", "modulus", "object", "function", "string", "boolean"];
+var answer = ["0","0","3", "2", "4", "3", "4"];
 
 submitScore.addEventListener("click", nextPage);
-viewHighScoreEl.addEventListener("click", function(){
- 
-  question.forEach(function(el) {
+
+viewHighScoreEl.addEventListener("click", function () {
+
+  question.forEach(function (el) {
     el.style.display = 'none';
- });
- question[7].style.display = "block";
- backBtn.addEventListener("click", currentPage)
+  });
+  question[7].style.display = "block";
+  backBtn.addEventListener("click", currentPage)
 });
 
 // The init function is called when the page loads 
 function init() {
-  question.forEach(function(el) {
+  correctEl.style.display = "none";
+  wrongEl.style.display = "none";
+  question.forEach(function (el) {
     el.style.display = 'none';
- });
- question[0].style = "block";
- for (i = 0; i < answerButton.length; i++) {
-  answerButton[i].addEventListener("click", nextPage);
- 
-}
+  });
+  question[0].style = "block";
+  for (i = 0; i < answerButton.length; i++) {
+    answerButton[i].addEventListener("click", waitForNextPage);
+
+  }
+  //startButton.addEventListener("click", nextPage);
   getWins();
   getlosses();
 }
 
-// The startGame function is called when the start button is clicked
-function startGame() {
+// The startQuiz function is called when the start button is clicked
+function startQuiz() {
   isWin = false;
   timerCount = 30;
   // Prevents start button from being clicked when round is in progress
   startButton.disabled = true;
-  nextPage();  
+  debugger;
+  nextPage();
   startTimer()
- 
+
 }
 
 
 
 
 var previous = 0;
-function nextPage(){
-  hidePrevious();  
-  if(nextPageId < question.length ){
-    question[nextPageId].setAttribute("style",  "display: block");
+function waitForNextPage() {
+  validateAnswer();
+  setTimeout(nextPage, 2000);
+
+
+}
+
+function showCorrect() {
+  correctEl.style.display = "block";
+  wrongEl.style.display = "none";
+}
+
+function showWrong() {
+  correctEl.style.display = "none";
+  wrongEl.style.display = "block";
+}
+
+
+function nextPage() {
+  hidePrevious();
+  if (nextPageId < question.length) {
+    question[nextPageId].setAttribute("style", "display: block");
     previous = nextPageId;
     nextPageId++;
-    
+
   }
-  
 }
 
-function currentPage(){
+function currentPage() {
   question[7].style.display = "none";
   --nextPageId;
-  if(nextPageId < question.length ){
-    question[nextPageId].setAttribute("style",  "display: block");
-    previous = nextPageId;      
+  if (nextPageId < question.length) {
+    question[nextPageId].setAttribute("style", "display: block");
+    previous = nextPageId;
   }
-  
+
 }
 
-function hidePrevious(){
-  if(previous >= 0 && previous < question.length){       
-    question[previous].setAttribute("style",  "display: none");
-    
+function hidePrevious() {
+  if (previous >= 0 && previous < question.length) {
+    question[previous].setAttribute("style", "display: none");
+
   }
-  
+
 }
 
 // The winGame function is called when the win condition is met
 function winGame() {
-  wordBlank.textContent = "YOU WON!!!🏆 ";
+
   winCounter++
   startButton.disabled = false;
   setWins()
@@ -102,7 +122,7 @@ function winGame() {
 
 // The loseGame function is called when timer reaches 0
 function loseGame() {
-  wordBlank.textContent = "GAME OVER";
+
   loseCounter++
   startButton.disabled = false;
   setLosses()
@@ -111,7 +131,7 @@ function loseGame() {
 // The setTimer function starts and stops the timer and triggers winGame() and loseGame()
 function startTimer() {
   // Sets timer
-  timer = setInterval(function() {
+  timer = setInterval(function () {
     timerCount--;
     timerElement.textContent = timerCount;
     if (timerCount >= 0) {
@@ -131,20 +151,7 @@ function startTimer() {
   }, 1000);
 }
 
-// Creates blanks on screen
-function renderBlanks() {
-  // Randomly picks word from words array
-  chosenWord = words[Math.floor(Math.random() * words.length)];
-  lettersInChosenWord = chosenWord.split("");
-  numBlanks = lettersInChosenWord.length;
-  blanksLetters = []
-  // Uses loop to push blanks to blankLetters array
-  for (var i = 0; i < numBlanks; i++) {
-    blanksLetters.push("_");
-  }
-  // Converts blankLetters array into a string and renders it on the screen
-  wordBlank.textContent = blanksLetters.join(" ")
-}
+
 
 // Updates win count on screen and sets win count to client storage
 function setWins() {
@@ -191,43 +198,23 @@ function checkWin() {
   }
 }
 
-// Tests if guessed letter is in word and renders it to the screen.
-function checkLetters(letter) {
-  var letterInWord = false;
-  for (var i = 0; i < numBlanks; i++) {
-    if (chosenWord[i] === letter) {
-      letterInWord = true;
-    }
-  }
-  if (letterInWord) {
-    for (var j = 0; j < numBlanks; j++) {
-      if (chosenWord[j] === letter) {
-        blanksLetters[j] = letter;
-      }
-    }
-    wordBlank.textContent = blanksLetters.join(" ");
+// Validate answer after button click
+function validateAnswer(event) {
+ question[question.length - 1].style.display = "block";
+  //  console.log(event.textContent);
+  var content = event.textContent.split(".");
+  console.log(content[0]);
+  if (answer[nextPageId] == content[0]) {
+    showCorrect();
+  } else {
+    showWrong();
   }
 }
 
-// Attach event listener to document to listen for key event
-document.addEventListener("keydown", function(event) {
-  // If the count is zero, exit function
-  if (timerCount === 0) {
-    return;
-  }
-  // Convert all keys to lower case
-  var key = event.key.toLowerCase();
-  var alphabetNumericCharacters = "abcdefghijklmnopqrstuvwxyz0123456789 ".split("");
-  // Test if key pushed is letter
-  if (alphabetNumericCharacters.includes(key)) {
-    var letterGuessed = event.key;
-    checkLetters(letterGuessed)
-    checkWin();
-  }
-});
 
-// Attach event listener to start button to call startGame function on click
-startButton.addEventListener("click", startGame);
+
+// Attach event listener to start button to call startQuiz function on click
+startButton.addEventListener("click", startQuiz);
 
 // Calls init() so that it fires when page opened
 init();

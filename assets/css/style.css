@@ -32,6 +32,7 @@ button,  .view-score {
     color: gray;
     font-style: italic;
     font-size: 30px;
+    width: 700px;
 }
 
 .reset-button {

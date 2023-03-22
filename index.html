@@ -41,12 +41,12 @@
             <div class="question-box">
                 <div class="large-font">Commonly used data types DO Not Include:</div>
                 <ul>
-                    <li><button>1. strings</button></li>
-                    <li><button>2. booleans</button></li>
-                    <li><button>3. alerts</button></li>
-                    <li><button>4. numbers</button></li>
+                    <li><button onclick="validateAnswer(this)">1. strings</button></li>
+                    <li><button onclick="validateAnswer(this)">2. booleans</button></li>
+                    <li><button onclick="validateAnswer(this)">3. alerts</button></li>
+                    <li><button onclick="validateAnswer(this)">4. numbers</button></li>
                 </ul>
-                <hr>
+
 
             </div>
         </section>
@@ -54,48 +54,48 @@
             <div class=" question-box">
                 <div class="large-font">The condition in an if / else statement is enclosed with ________.</div>
                 <ul>
-                    <li><button>1. quotes</button></li>
-                    <li><button>2. curly brackets</button></li>
-                    <li><button>3. paranthesis</button></li>
-                    <li><button>4. square brackets</button></li>
+                    <li><button onclick="validateAnswer(this)">1. quotes</button></li>
+                    <li><button onclick="validateAnswer(this)">2. curly brackets</button></li>
+                    <li><button onclick="validateAnswer(this)">3. paranthesis</button></li>
+                    <li><button onclick="validateAnswer(this)">4. square brackets</button></li>
                 </ul>
-                <hr>
+
             </div>
 
         </section>
         <section id="4">
             <div class="large-font">Arrays in JavaScript can be used to store ________.</div>
             <ul>
-                <li><button>1. numbers and strings</button></li>
-                <li><button>2. other arrays</button></li>
-                <li><button>3. booleans</button></li>
-                <li><button>4. all of the above</button></li>
+                <li><button onclick="validateAnswer(this)">1. numbers and strings</button></li>
+                <li><button onclick="validateAnswer(this)">2. other arrays</button></li>
+                <li><button onclick="validateAnswer(this)">3. booleans</button></li>
+                <li><button onclick="validateAnswer(this)">4. all of the above</button></li>
             </ul>
-            <hr>
+
 
         </section>
         <section id="5">
             <div class="large-font">String values must be enclosed within _______ when being assigned to variables.
             </div>
             <ul>
-                <li><button>1. commas</button></li>
-                <li><button>2. curly brackets</button></li>
-                <li><button>3. quotes</button></li>
-                <li><button>4. paranthesis</button></li>
+                <li><button onclick="validateAnswer(this)">1. commas</button></li>
+                <li><button onclick="validateAnswer(this)">2. curly brackets</button></li>
+                <li><button onclick="validateAnswer(this)">3. quotes</button></li>
+                <li><button onclick="validateAnswer(this)">4. paranthesis</button></li>
             </ul>
-            <hr>
+
 
         </section>
         <section id="6">
             <div class="large-font ">A very useful tool used during development and debugging for printing content to
                 the debugger is:</div>
             <ul>
-                <li><button>1. JavaScript</button></li>
-                <li><button>2. terminal/bash</button></li>
-                <li><button>3. for loops</button></li>
-                <li><button>4. console.log</button></li>
+                <li><button onclick="validateAnswer(this)">1. JavaScript</button></li>
+                <li><button onclick="validateAnswer(this)">2. terminal/bash</button></li>
+                <li><button onclick="validateAnswer(this)">3. for loops</button></li>
+                <li><button onclick="validateAnswer(this)">4. console.log</button></li>
             </ul>
-            <hr>
+
 
 
         </section>
@@ -105,24 +105,25 @@
             <div> <span class="normal-font">Enter initials:</span><input type="text" />
                 <button id="submit">Submit</button>
             </div>
-            <hr>
+
 
 
         </section>
         <section id="8">
             <h1 class="normal-font"> High Score</h1>
             <div class="normal-font"> </div>
-            <div> 
+            <div>
                 <button id="back">Go back</button>
                 <button id="reset">Clear high scores</button>
             </div>
-            <hr>
+
 
 
         </section>
         <section>
-            <div class="answer-response">Correct!</div>
-            <div class="answer-response">Wrong!</div>
+            <hr>
+            <div id="correct" class="answer-response">Correct!</div>
+            <div id="wrong" class="answer-response">Wrong!</div>
         </section>
 
     </main>
