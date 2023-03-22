@@ -53,7 +53,7 @@ function init() {
 // The startQuiz function is called when the start button is clicked
 function startQuiz() {
   isWin = false;
-  timerCount = 30;
+  timerCount = 50;
   // Prevents start button from being clicked when round is in progress
   startButton.disabled = true;
   debugger;
@@ -67,7 +67,7 @@ function startQuiz() {
 
 var previous = 0;
 function waitForNextPage() {
-  validateAnswer();
+ 
   setTimeout(nextPage, 2000);
 
 
@@ -190,18 +190,12 @@ function getlosses() {
   //lose.textContent = loseCounter;
 }
 
-function checkWin() {
-  // If the word equals the blankLetters array when converted to string, set isWin to true
-  if (chosenWord === blanksLetters.join("")) {
-    // This value is used in the timer function to test if win condition is met
-    isWin = true;
-  }
-}
+
 
 // Validate answer after button click
 function validateAnswer(event) {
- question[question.length - 1].style.display = "block";
-  //  console.log(event.textContent);
+ question[8].style.display = "block";
+  
   var content = event.textContent.split(".");
   console.log(content[0]);
   if (answer[nextPageId] == content[0]) {
